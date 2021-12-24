@@ -6,24 +6,57 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useState} from 'react';
 import {
-  Text,
   View,
   TextInput,
   Button,
   StyleSheet,
+  Text,
 } from 'react-native';
 
 
 
 const App = () => {
+  const [task, setTask] = useState('');
+  const [taskList, setTaskList] = useState([]);
+
+  const onChange = (text) => {
+    setTask(text);
+  }
+
+  const addTask = () => {
+    setTaskList([...taskList, task]);
+    setTask('');
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.formContainer}>
-        <TextInput style={styles.textInput} placeholder='name a task'/>
-        <Button  title='Send' color='#9191E9' />
+        <TextInput 
+          autoFocus
+          style={styles.textInput} 
+          placeholder='name a task'
+          onChangeText={(text) => onChange(text)}
+          value={task}
+        />
+        <Button
+          onPress={() => addTask()}
+          title='Send'
+          color='#9191E9'
+          disabled={task.trim().length === 0}
+          />
       </View>
+        <View style={styles.taskListContainer}>
+          <Text style={styles.taskListTitle}>Task List</Text>
+          {taskList.length > 0 ? (
+            taskList.map((task, index) => (
+              <Text key={index}>{task}</Text>
+            ))
+          ) : (
+            <Text>No tasks yet</Text>
+          )}
+        </View>
     </View>
   );
 };
@@ -42,7 +75,16 @@ const styles = StyleSheet.create({
     flex: 0.8,
     borderBottomWidth: 1, 
     borderBottomColor: '#cccccc',
+  },
+  taskListTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#000000',
+  },
+  taskListContainer: {
+    paddingHorizontal: 40,
+    marginTop: 10,
   }
-})
+});
 
 export default App;
