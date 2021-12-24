@@ -13,6 +13,8 @@ import {
   Button,
   StyleSheet,
   Text,
+  SafeAreaView,
+  FlatList
 } from 'react-native';
 
 
@@ -31,7 +33,7 @@ const App = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.formContainer}>
         <TextInput 
           autoFocus
@@ -50,14 +52,17 @@ const App = () => {
         <View style={styles.taskListContainer}>
           <Text style={styles.taskListTitle}>Task List</Text>
           {taskList.length > 0 ? (
-            taskList.map((task, index) => (
-              <Text key={index}>{task}</Text>
-            ))
+            <FlatList
+              keyExtractor={(index) => index.toString()}
+              refreshing={true}
+              data={taskList}
+              renderItem={({item}) => <Text style={styles.textList}>{item}</Text>}
+            />
           ) : (
             <Text>No tasks yet</Text>
           )}
         </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -84,6 +89,12 @@ const styles = StyleSheet.create({
   taskListContainer: {
     paddingHorizontal: 40,
     marginTop: 10,
+  },
+  textList: {
+    padding: 50,
+    marginVertical: 20,
+    backgroundColor: '#9191E9',
+    fontSize: 30,
   }
 });
 
