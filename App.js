@@ -14,7 +14,8 @@ import {
   StyleSheet,
   Text,
   SafeAreaView,
-  FlatList
+  FlatList,
+  TouchableOpacity
 } from 'react-native';
 
 
@@ -28,9 +29,15 @@ const App = () => {
   }
 
   const addTask = () => {
-    setTaskList([...taskList, task]);
+    setTaskList([...taskList, {id: Math.random() , task}]);
     setTask('');
   }
+
+  const deteleTask = (id) => {
+    setTaskList(taskList.filter(task => task.id !== id));
+  }
+
+  console.warn(taskList);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -53,10 +60,17 @@ const App = () => {
           <Text style={styles.taskListTitle}>Task List</Text>
           {taskList.length > 0 ? (
             <FlatList
-              keyExtractor={(index) => index.toString()}
+              keyExtractor={(item) => item.id.toString()}
               refreshing={true}
               data={taskList}
-              renderItem={({item}) => <Text style={styles.textList}>{item}</Text>}
+              renderItem={({item}) => (
+                <View>
+                  <Text style={styles.textList}>{item.task}</Text>
+                  <TouchableOpacity onPress={() => deteleTask(item.id)}>
+                    <Text style={styles.delete}>X</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
             />
           ) : (
             <Text>No tasks yet</Text>
@@ -95,6 +109,13 @@ const styles = StyleSheet.create({
     marginVertical: 20,
     backgroundColor: '#9191E9',
     fontSize: 30,
+  },
+  delete: {
+    backgroundColor: 'red',
+    width: 20,
+    height: 20,
+    margin: 10,
+    color: '#ffffff',
   }
 });
 
