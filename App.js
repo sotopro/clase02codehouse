@@ -18,6 +18,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import TaskList from './src/components/molecules/tasklist/index';
+
 
 
 const App = () => {
@@ -36,8 +38,7 @@ const App = () => {
   const deteleTask = (id) => {
     setTaskList(taskList.filter(task => task.id !== id));
   }
-
-  console.warn(taskList);
+  console.log(taskList);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -63,14 +64,7 @@ const App = () => {
               keyExtractor={(item) => item.id.toString()}
               refreshing={true}
               data={taskList}
-              renderItem={({item}) => (
-                <View>
-                  <Text style={styles.textList}>{item.task}</Text>
-                  <TouchableOpacity onPress={() => deteleTask(item.id)}>
-                    <Text style={styles.delete}>X</Text>
-                  </TouchableOpacity>
-                </View>
-              )}
+              renderItem={({item}) => <TaskList task={item} deleteTask={deteleTask} /> }
             />
           ) : (
             <Text>No tasks yet</Text>
