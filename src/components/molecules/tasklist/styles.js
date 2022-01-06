@@ -1,17 +1,27 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
     textList: {
-      padding: 50,
-      marginVertical: 20,
+      flex: 0.8,
+      paddingVertical: 20,
+      marginVertical: 10,
       backgroundColor: '#9191E9',
       fontSize: 30,
     },
-    delete: {
+    containerDelete: {
+      flex: 0.2,
+      marginVertical: 10,
       backgroundColor: 'red',
-      width: 20,
-      height: 20,
-      margin: 10,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    delete: {
+      margin: 0,
       color: '#ffffff',
     }
   });

@@ -3,9 +3,9 @@ import { styles } from './styles';
 import { View, Text, TouchableOpacity} from 'react-native'
 const TaskList = ({task, deleteTask}) => {
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.textList}>{task.task}</Text>
-            <TouchableOpacity onPress={() => deleteTask && deleteTask(task.id)}>
+            <TouchableOpacity style={styles.containerDelete} onPress={() => deleteTask && deleteTask(task.id)}>
                 <Text style={styles.delete}>X</Text>
             </TouchableOpacity>
         </View>
