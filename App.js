@@ -14,6 +14,8 @@ import {
   SafeAreaView,
 } from 'react-native';
 
+import Header from './src/components/molecules/header/index';
+import Title from './src/components/atoms/title/index';
 
 
 const App = () => {
@@ -21,8 +23,9 @@ const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        <Text>Hello World!</Text>
-        </View>
+        <Header />
+        <Title />
+      </View>
     </SafeAreaView>
   );
 };
