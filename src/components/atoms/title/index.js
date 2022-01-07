@@ -2,10 +2,10 @@ import React from 'react';
 import  {View, Text } from 'react-native';
 import { styles } from './styles';
 
-const Title = () => {
+const Title = ({text}) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Comienza el juego</Text>
+            <Text style={styles.text}>{text}</Text>
         </View>
     )
 }
