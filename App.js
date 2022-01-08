@@ -29,18 +29,11 @@ const App = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <View style={styles.container}>
+      <View style={styles.container}>
         <Header title="Adivina el número" />
         <Title text="Comienza el juego" />
         <Card title="Elija un número" type={components.card.LIGHT} color={theme.primaryColor} handleOnChange={handleOnChange} value={number} autoFocus={true} autoComplete='off' keyboardType='numeric'/>
-      </View> */}
-      <View style={{ flex: 1, flexDirection: 'row'}}>
-        <View style={{ flex: 0, flexBasis: 100, backgroundColor: 'blue'}}/>
-        <View style={{ flex: 1, height: 50,flexBasis: 100, backgroundColor: 'yellow'}}/>
       </View>
-      <View style={{ flex: 1, flexGrow: 0.3, backgroundColor: 'blue'}}/>
-      <View style={{ flex: 1, backgroundColor: 'red'}}/>
-      <View style={{ flex: 1, backgroundColor: 'green'}}/>
     </SafeAreaView>
   );
 };
