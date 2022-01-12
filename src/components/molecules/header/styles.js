@@ -10,6 +10,6 @@ export const styles = StyleSheet.create({
   text: {
       fontSize: 30,
       color: '#212121',
-      fontWeight: 'bold',
+      fontFamily: 'Lato-Light',
   }
   });
