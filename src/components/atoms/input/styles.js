@@ -12,7 +12,6 @@ export const styles = StyleSheet.create({
 
   },
   input: {
-      
       height: 40,
       backgroundColor: '#ffffff'
   }

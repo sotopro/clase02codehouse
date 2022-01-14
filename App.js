@@ -16,17 +16,29 @@ import {
 import GameStart from './src/screens/gamestart/index';
 import GameScreen from './src/screens/gamescreen/index';
 import Header from './src/components/molecules/header/index';
+import GameOverScreen from './src/screens/gameover/index';
 
 const App = () => {
   const [userNumber, setUserNumber] = useState('');
+  const [guessRounds, setGuessRounds] = useState(0);
 
-  const handlerStartGamer = (selectedNumber) => {
+  const handlerStartGame = (selectedNumber) => {
     setUserNumber(selectedNumber);
+    setGuessRounds(0);
   } 
+  const handlerGameOver = rounds => {
+    setGuessRounds(rounds)
+  }
 
-  let content = userNumber ? 
-    <GameScreen userOption={userNumber} /> :
-    <GameStart onStartGame={handlerStartGamer} />
+  const handlerRestart = () => {
+    setGuessRounds(0);
+    setUserNumber('');
+  }
+
+  let content = userNumber && guessRounds <= 0 ? 
+    <GameScreen userOption={userNumber} onGameOver={handlerGameOver}/> : guessRounds > 0 ?
+    <GameOverScreen rounds={guessRounds} choice={userNumber} onRestart={handlerRestart} /> :
+    <GameStart onStartGame={handlerStartGame} />
 
   return (
     <SafeAreaView style={styles.container}>
