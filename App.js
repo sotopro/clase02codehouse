@@ -11,6 +11,7 @@ import {
   View,
   StyleSheet,
   SafeAreaView,
+  KeyboardAvoidingView
 } from 'react-native';
 
 import GameStart from './src/screens/gamestart/index';
@@ -42,10 +43,12 @@ const App = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <KeyboardAvoidingView behavior="height" style={styles.container}>
       <View style={styles.container}>
       <Header title="Adivina el número" />
         {content}
       </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

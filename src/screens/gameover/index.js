@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, Button, Image } from 'react-native';
+import { View, Text, Button, Image, Dimensions } from 'react-native';
 import Numbers from '../../components/atoms/numbers';
 import { styles } from './styles';
 import { generateRandomNumber } from '../../utils/functions';
@@ -9,6 +9,23 @@ const gameOverImage = require('../../../assets/images/gameover.jpg');
 
 const GameOverScreen = (props) => {
     const { rounds, choice, onRestart } = props;
+    const [isPortrait, setIsPortrait] = useState(true);
+
+    const onPortrait = () => {
+        const dim = Dimensions.get('window');
+        return dim.height >= dim.width;
+    }
+
+    const statePortrait = () => {
+        setIsPortrait(onPortrait());
+    }
+
+    useEffect(() => {
+        Dimensions.addEventListener('change', statePortrait);
+        return () => {
+            Dimensions.removeEventListener('change', statePortrait);
+        }
+    })
     
     return (
         <View style={styles.container}>
